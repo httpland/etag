@@ -1,6 +1,6 @@
 # http-etag
 
-HTTP ETag utilities for `Request` and `Response`.
+HTTP ETag utilities for standard `Request` and `Response`.
 
 ## Usage
 
