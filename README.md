@@ -1,4 +1,4 @@
-# http-etag
+# etag
 
 HTTP ETag utilities for standard `Request` and `Response`.
 
