@@ -1,3 +1,10 @@
+# [1.0.0-beta.3](https://github.com/httpland/http-etag/compare/1.0.0-beta.2...1.0.0-beta.3) (2023-02-14)
+
+
+### Bug Fixes
+
+* **cors:** fix etag format to quoted value ([3559edd](https://github.com/httpland/http-etag/commit/3559eddffe5bbc23b17fa3d02b884763ca9e762a))
+
 # [1.0.0-beta.2](https://github.com/httpland/http-etag/compare/1.0.0-beta.1...1.0.0-beta.2) (2023-02-14)
 
 
