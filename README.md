@@ -1,76 +1,77 @@
-# etag
+# http-etag
 
-HTTP ETag utilities for standard `Request` and `Response`.
+ETag middleware for standard `Request` and `Response`.
+
+## Middleware
+
+For a definition of Universal HTTP middleware, see the
+[http-middleware](https://github.com/httpland/http-middleware) project.
 
 ## Usage
+
+Middleware is exported by default.
 
 Add `etag` field to HTTP Response header. Or, check the etag and return the
 appropriate `304` HTTP response.
 
 The ETag is computed from a hash of the `Response` body.
 
-For the sake of immutability, we guarantee that the argument will not be
-modified.
+By default, the SHA-1 algorithm of the
+[Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API)
+is used. This is because it requires no additional code and is faster.
+
+Calculate ETag:
 
 ```ts
-import { withEtag } from "https://deno.land/x/http_etag@$VERSION/mod.ts";
+import etag from "https://deno.land/x/http_etag@$VERSION/mod.ts";
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
-const taggedResponse = await withEtag(
+const middleware = etag();
+const response = await middleware(
   new Request("http://localhost"),
-  new Response("ok"),
+  (request) => new Response("ok"),
 );
 
-assertEquals(taggedResponse.headers.get("etag"), "<body:FNV32:hash>");
+assertEquals(response.headers.get("etag"), "<body:SHA-1>");
 ```
 
-## Supported algorithms
-
-You can change the algorithm from the `algorithm` filed.
+Check ETag:
 
 ```ts
-import { withEtag } from "https://deno.land/x/http_etag@$VERSION/mod.ts";
-import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import etag from "https://deno.land/x/http_etag@$VERSION/mod.ts";
+import { assert, assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
-const taggedResponse = await withEtag(
-  new Request("http://localhost"),
-  new Response("ok"),
-  { algorithm: "SHA-1" },
+const middleware = etag();
+const response = await middleware(
+  new Request("http://localhost", { headers: { "if-none-match": "<etag>" } }),
+  (request) => new Response("ok", { headers: { "x-server": "deno" } }),
 );
 
-assertEquals(taggedResponse.headers.get("etag"), "<body:SHA-1:hash>");
+assertEquals(response.status, 304);
+assertEquals(await response.text(), "");
+assert(response.headers.has("x-server"));
 ```
 
-The following algorithms are supported built-in.
+## Customize hash algorithm
 
-- BLAKE2B
-- BLAKE2B-256
-- BLAKE2B-384
-- BLAKE2S
-- BLAKE3
-- KECCAK-224
-- KECCAK-256
-- KECCAK-384
-- KECCAK-512
-- SHA-1
-- SHA-224
-- SHA-256
-- SHA-384
-- SHA-512
-- SHA3-224
-- SHA3-256
-- SHA3-384
-- SHA3-512
-- SHAKE128
-- SHAKE256
-- TIGER
-- RIPEMD-160
-- MD4
-- MD5
-- FNV32(Default)
-- FNV32A
-- FNV64
-- FNV64A
+You can change the hash algorithm from the `digest` filed.
+
+```ts
+import etag from "https://deno.land/x/http_etag@$VERSION/mod.ts";
+import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
+
+const middleware = etag({
+  digest: (data) => crypto.subtle.digest("sha-256", data),
+});
+const response = await middleware(
+  new Request("http://localhost"),
+  (request) => new Response("ok"),
+);
+
+assertEquals(response.headers.get("etag"), "<body:SHA-256>");
+```
+
+The `digest` function must satisfy the following interfaces:
 
 ## License
 

@@ -11,4 +11,5 @@ export const Field = {
   Etag: "etag",
   IfNoneMatch: "if-none-match",
   ContentLength: "content-length",
+  ContentType: "content-type",
 };
