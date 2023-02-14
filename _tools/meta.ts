@@ -10,11 +10,12 @@ export const makeOptions = (version: string): BuildOptions => ({
   entryPoints: ["./mod.ts"],
   outDir: "./npm",
   package: {
-    name: "@httpland/etag",
+    name: "@httpland/http-etag",
     version,
-    description: "HTTP ETag utilities for standard Request and Response",
+    description: "ETag middleware for standard Request and Response",
     keywords: [
       "http",
+      "middleware",
       "etag",
       "hash",
       "entity",
@@ -23,13 +24,13 @@ export const makeOptions = (version: string): BuildOptions => ({
       "response",
     ],
     license: "MIT",
-    homepage: "https://github.com/httpland/etag",
+    homepage: "https://github.com/httpland/http-etag",
     repository: {
       type: "git",
-      url: "git+https://github.com/httpland/etag.git",
+      url: "git+https://github.com/httpland/http-etag.git",
     },
     bugs: {
-      url: "https://github.com/httpland/etag/issues",
+      url: "https://github.com/httpland/http-etag/issues",
     },
     sideEffects: false,
     type: "module",
