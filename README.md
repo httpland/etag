@@ -32,7 +32,7 @@ const response = await middleware(
   (request) => new Response("ok"),
 );
 
-assertEquals(response.headers.get("etag"), "<body:SHA-1>");
+assertEquals(response.headers.get("etag"), `"<body:SHA-1>"`);
 ```
 
 Check ETag:
@@ -68,7 +68,7 @@ const response = await middleware(
   (request) => new Response("ok"),
 );
 
-assertEquals(response.headers.get("etag"), "<body:SHA-256>");
+assertEquals(response.headers.get("etag"), `"<body:SHA-256>"`);
 ```
 
 The `digest` function must satisfy the following interfaces:

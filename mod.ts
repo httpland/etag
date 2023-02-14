@@ -19,7 +19,7 @@ export { type Middleware } from "./deps.ts";
  *   (request) => new Response("ok"),
  * );
  *
- * assertEquals(response.headers.get("etag"), "<body:SHA-1>");
+ * assertEquals(response.headers.get("etag"), `"<body:SHA-1>"`);
  * ```
  */
 export default function etag(options?: Options): Middleware {

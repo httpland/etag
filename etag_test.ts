@@ -8,7 +8,7 @@ import {
 } from "./_dev_deps.ts";
 import { withEtag } from "./etag.ts";
 
-const ETAG = "7a85f4764bbd6daf1c3545efbbf0f279a6dc0beb";
+const ETAG = `"7a85f4764bbd6daf1c3545efbbf0f279a6dc0beb"`;
 
 describe("withEtag", () => {
   it("should return with etag header field if the response does not have etag field", async () => {
@@ -68,7 +68,7 @@ describe("withEtag", () => {
     assertEquals(response.status, Status.OK);
     assertEquals(await response.text(), "ok");
     const SHA256 =
-      "2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df";
+      `"2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df"`;
     assertEquals(response.headers.get("etag"), SHA256);
   });
 });

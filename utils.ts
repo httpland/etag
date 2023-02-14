@@ -32,3 +32,9 @@ export function ifNoneMatch(fieldValue: string, etag: string): boolean {
 function isStar(input: string): input is "*" {
   return input === "*";
 }
+
+export function quote<T extends string>(input: T): `"${T}"`;
+export function quote(input: string): string;
+export function quote(input: string): string {
+  return `"${input}"`;
+}

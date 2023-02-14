@@ -3,7 +3,7 @@
 
 import { toHashString } from "./deps.ts";
 import { FailBy, Field } from "./constants.ts";
-import { ifNoneMatch, reason } from "./utils.ts";
+import { ifNoneMatch, quote, reason } from "./utils.ts";
 
 export interface Options {
   /** Function to calculate hash values. The data is passed the actual response body value.
@@ -33,7 +33,7 @@ const digestSHA1: Digest = (data: ArrayBuffer) =>
  *   new Request("http://localhost"),
  *   new Response("ok"),
  * );
- * assertEquals(response.headers.get("etag"), "<body:SHA1>");
+ * assertEquals(response.headers.get("etag"), `"<body:SHA1>""`);
 ```
  */
 export async function withEtag(
@@ -53,6 +53,7 @@ export async function withEtag(
     .then(digest)
     .catch(reason(FailBy.CalcHash))
     .then(toHashString)
+    .then(quote)
     .catch(reason(FailBy.CalcHashString));
   const res = response.clone();
 
