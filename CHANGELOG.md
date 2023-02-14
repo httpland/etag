@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/httpland/http-etag/compare/1.0.0-beta.1...1.0.0-beta.2) (2023-02-14)
+
+
+### Features
+
+* **mod.ts:** export middleware as default, remove utilities from export ([435244c](https://github.com/httpland/http-etag/commit/435244c1fd3e5b12eaa85344b80439d52145ce6c))
+
 # 1.0.0-beta.1 (2023-02-11)
 
 
