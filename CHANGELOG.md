@@ -1,3 +1,10 @@
+# [1.0.0-beta.4](https://github.com/httpland/http-etag/compare/1.0.0-beta.3...1.0.0-beta.4) (2023-03-04)
+
+
+### Features
+
+* remove if none match header checking and transforming ([5e7cccc](https://github.com/httpland/http-etag/commit/5e7cccc742309906efef02622a0f4bf1e40bc37e))
+
 # [1.0.0-beta.3](https://github.com/httpland/http-etag/compare/1.0.0-beta.2...1.0.0-beta.3) (2023-02-14)
 
 
