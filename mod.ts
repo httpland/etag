@@ -2,8 +2,8 @@
 // This module is browser compatible.
 
 import { Middleware } from "./deps.ts";
-import { type Options, withEtag } from "./etag.ts";
-export { type Options } from "./etag.ts";
+import { type Options, withEtag } from "./transform.ts";
+export { type Digest, type Options } from "./transform.ts";
 export { type Middleware } from "./deps.ts";
 
 /** Create ETag middleware.
@@ -24,8 +24,8 @@ export { type Middleware } from "./deps.ts";
  */
 export default function etag(options?: Options): Middleware {
   return async (request, next) => {
-    const response = await next(request.clone());
+    const response = await next(request);
 
-    return withEtag(request.clone(), response.clone(), options);
+    return withEtag(response, options);
   };
 }

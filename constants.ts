@@ -6,10 +6,3 @@ export const FailBy = {
   CalcHash: "fail to calculate hash",
   CalcHashString: "fail to calculate hash string",
 };
-
-export const Field = {
-  Etag: "etag",
-  IfNoneMatch: "if-none-match",
-  ContentLength: "content-length",
-  ContentType: "content-type",
-};
