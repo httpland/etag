@@ -1,3 +1,10 @@
+# [1.0.0-beta.5](https://github.com/httpland/http-etag/compare/1.0.0-beta.4...1.0.0-beta.5) (2023-03-06)
+
+
+### Bug Fixes
+
+* **transform:** ignore the response body does not exist ([31e9d1c](https://github.com/httpland/http-etag/commit/31e9d1cc6cac23b32c996287a78ff51b6f4fc755))
+
 # [1.0.0-beta.4](https://github.com/httpland/http-etag/compare/1.0.0-beta.3...1.0.0-beta.4) (2023-03-04)
 
 
