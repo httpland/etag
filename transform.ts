@@ -25,6 +25,7 @@ export async function withEtag(
   options?: Options,
 ): Promise<Response> {
   if (
+    !response.body ||
     response.bodyUsed ||
     response.headers.has(RepresentationHeader.ETag)
   ) {

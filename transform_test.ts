@@ -37,6 +37,14 @@ describe("withEtag", () => {
     assertEquals(response.headers.get("etag"), SHA256);
   });
 
+  it("should return same response if the response body does not exist", async () => {
+    const initResponse = new Response();
+
+    const response = await withEtag(initResponse);
+
+    assertEquals(initResponse, response);
+  });
+
   it("should return same response if the response has been read", async () => {
     const initResponse = new Response("ok");
 
