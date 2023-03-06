@@ -4,7 +4,7 @@ export const makeOptions = (version: string): BuildOptions => ({
   test: false,
   shims: {},
   compilerOptions: {
-    lib: ["esnext", "dom"],
+    lib: ["esnext", "dom", "dom.iterable"],
   },
   typeCheck: true,
   entryPoints: ["./mod.ts"],
