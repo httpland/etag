@@ -73,8 +73,9 @@ Middleware will effect following:
 
 For safety, middleware is executed only if the following conditions are met:
 
+- The body exists
 - The body is readable
-- The `ETag` header is not present
+- The `ETag` header does not exist
 
 ## License
 
